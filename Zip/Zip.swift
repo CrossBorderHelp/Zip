@@ -9,57 +9,10 @@
 import Foundation
 import Minizip
 
-/// Zip error type
-public enum ZipError: Error {
-    /// File not found
-    case fileNotFound
-    /// Unzip fail
-    case unzipFail
-    /// Zip fail
-    case zipFail
-    
-    /// User readable description
-    public var description: String {
-        switch self {
-        case .fileNotFound: return NSLocalizedString("File not found.", comment: "")
-        case .unzipFail: return NSLocalizedString("Failed to unzip file.", comment: "")
-        case .zipFail: return NSLocalizedString("Failed to zip file.", comment: "")
-        }
-    }
-}
 
-public enum ZipCompression: Int {
-    case NoCompression
-    case BestSpeed
-    case DefaultCompression
-    case BestCompression
 
-    internal var minizipCompression: Int32 {
-        switch self {
-        case .NoCompression:
-            return Z_NO_COMPRESSION
-        case .BestSpeed:
-            return Z_BEST_SPEED
-        case .DefaultCompression:
-            return Z_DEFAULT_COMPRESSION
-        case .BestCompression:
-            return Z_BEST_COMPRESSION
-        }
-    }
-}
 
-/// Data in memory that will be archived as a file.
-public struct ArchiveFile {
-    var filename:String
-    var data:NSData
-    var modifiedTime:Date?
 
-    public init(filename:String, data:NSData, modifiedTime:Date?) {
-        self.filename = filename
-        self.data = data
-        self.modifiedTime = modifiedTime
-    }
-}
 
 
 /// Zip class
